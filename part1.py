@@ -7,6 +7,8 @@ from picar_4wd.pwm import PWM
 from picar_4wd.ultrasonic import Ultrasonic
 from picar_4wd.servo import Servo
 import time
+import random
+import math
 speed = 30
 threshold = 30
 # create an Ultrasonic object
@@ -31,12 +33,14 @@ def main():
         distance = get_distance_at(0)
         print(distance)
 
-        if distance < 0:
-            continue
-        elif distance < 15:
+        if distance < threshold:
             fc.backward(speed)
-        elif distance < threshold:
-            fc.turn_right(speed)
+            time.sleep(0.5)
+            rand = random.randint(-90,90)
+            if rand < 0:
+                fc.turn_left(math.abs(rand))
+            else:
+                fc.turn_right(rand)
         else:
             fc.forward(speed)
 
