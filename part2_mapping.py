@@ -36,7 +36,7 @@ def generate_map():
     for rd in raw_data:
         x = math.floor(rd[1] * math.cos(math.radians(rd[0])))
         y = math.floor(rd[1] * math.sin(math.radians(rd[0])))
-        if x >= 30 or y >= 30:
+        if x >= 30 or y >= 30 or x <= -30 or y <= -30:
             points.append([0, x, y])
         else:
             points.append([1, x, y])
@@ -64,7 +64,8 @@ def generate_map():
         prev_point_val = val
         prev_x = x
         prev_y = y
-    np.asarray(map)
+
+    np.set_printoptions(threshold=sys.maxsize)
     print(map)
 
 if __name__ == '__main__':
