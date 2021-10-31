@@ -64,11 +64,8 @@ def generate_map():
         prev_point_val = val
         prev_x = x
         prev_y = y
-
-    file = open("part2_map.txt", "w+")
-    content = str(map)
-    file.write(content)
-    file.close()
+    np.set_printoptions(threshold=sys.maxsize)
+    print(map)
 
 if __name__ == '__main__':
     generate_map()
