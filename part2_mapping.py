@@ -44,7 +44,23 @@ def generate_map():
     print(points)
     # # Fill out numpy array
     map = np.zeros((50,100))
-    #
+
+    x_center = 50
+    prev_point_val = 0
+
+    for point in points:
+        val = point[0]
+        x = point[1]
+        y = point[2]
+
+        if val == 1:
+            # Fill this point
+            map[y, x_center + x] = 1
+            # Draw a line?
+            # if prev_point_val == 1:
+                # connect the two points with 1s
+        prev_point_val = val
+
     np.set_printoptions(threshold=sys.maxsize)
     print(map)
 
