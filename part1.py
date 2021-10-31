@@ -21,7 +21,7 @@ def main():
 
         if distance < 0:
             continue
-        elif distance < 20:
+        elif distance < 10:
             fc.backward(speed)
             time.sleep(0.04)
         elif distance < threshold:
