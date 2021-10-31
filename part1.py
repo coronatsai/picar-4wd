@@ -7,7 +7,7 @@ from picar_4wd.pwm import PWM
 from picar_4wd.ultrasonic import Ultrasonic
 from picar_4wd.servo import Servo
 import time
-speed = 25
+speed = 40
 threshold = 20
 # create an Ultrasonic object
 
