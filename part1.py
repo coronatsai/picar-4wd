@@ -18,7 +18,7 @@ ua = Ultrasonic(Pin('D8'), Pin('D9'))
 
 def main():
     while True:
-        distance = ua.get_distance(0)
+        distance = ua.get_distance()
         print(distance)
 
         if distance < threshold:
