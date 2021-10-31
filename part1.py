@@ -18,7 +18,6 @@ servo = Servo(PWM("P0"), offset=0)
 def get_distance_at(angle):
     global angle_distance
     servo.set_angle(angle)
-    time.sleep(1)
     distance = ua.get_distance()
     angle_distance = [angle, distance]
     return distance
