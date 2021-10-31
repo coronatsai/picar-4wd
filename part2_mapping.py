@@ -60,8 +60,10 @@ def generate_map():
                 # connect the two points with 1s
         prev_point_val = val
 
-    np.set_printoptions(threshold=sys.maxsize)
-    print(*map, sep='\n')
+    file = open("part2_map.txt", "w+")
+    content = str(map)
+    file.write(content)
+    file.close()
 
 if __name__ == '__main__':
     generate_map()
