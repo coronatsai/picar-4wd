@@ -3,7 +3,7 @@ from picar_4wd.pin import Pin
 from picar_4wd.pwm import PWM
 from picar_4wd.ultrasonic import Ultrasonic
 from picar_4wd.servo import Servo
-# import numpy as np
+import numpy as np
 import time
 import sys
 import math
@@ -43,10 +43,10 @@ def generate_map():
             points.append([1, x, y])
     print(points)
     # # Fill out numpy array
-    # map = np.zeros((50,100))
+    map = np.zeros((50,100))
     #
-    # np.set_printoptions(threshold=sys.maxsize)
-    # print(arr)
+    np.set_printoptions(threshold=sys.maxsize)
+    print(arr)
 
 if __name__ == '__main__':
     generate_map()
