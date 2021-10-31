@@ -25,7 +25,7 @@ def main():
         if distance < threshold and distance > 0:
             fc.backward(speed)
             time.sleep(0.5
-        if distance < turn_threshold and distance > 0:
+        elif distance < turn_threshold and distance > 0:
             rand = random.randint(0,2)
             if rand == 0:
                 fc.turn_left(speed)
