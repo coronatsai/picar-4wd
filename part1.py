@@ -24,11 +24,11 @@ def main():
         if distance < threshold and distance > 0:
             fc.backward(speed)
             time.sleep(0.5)
-            rand = random.randint(-90,90)
-            if rand < 0:
-                fc.turn_left(abs(rand))
+            rand = random.randint(0,2)
+            if rand == 0:
+                fc.turn_left(speed)
             else:
-                fc.turn_right(rand)
+                fc.turn_right(speed)
         else:
             fc.forward(speed)
 
