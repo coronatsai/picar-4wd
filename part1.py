@@ -31,14 +31,11 @@ def main():
         distance = get_distance_at(0)
         print(distance)
 
-        if distance < 0:
-            continue
-        elif distance < 5:
+
+        if distance < 5:
             fc.backward(speed)
-            time.sleep(0.04)
         elif distance < threshold:
             fc.turn_right(speed)
-            time.sleep(0.04)
         else:
             fc.forward(speed)
 
