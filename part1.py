@@ -21,7 +21,7 @@ def main():
         distance = ua.get_distance()
         print(distance)
 
-        if distance < threshold:
+        if distance < threshold and distance > 0:
             fc.backward(speed)
             time.sleep(0.5)
             rand = random.randint(-90,90)
