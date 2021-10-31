@@ -6,7 +6,7 @@ from picar_4wd.pin import Pin
 from picar_4wd.ultrasonic import Ultrasonic
 import time
 speed = 25
-threshold = 40
+threshold = 20
 # create an Ultrasonic object
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
 
@@ -21,7 +21,7 @@ def main():
 
         if distance < 0:
             continue
-        elif distance < 10:
+        elif distance < 5:
             fc.backward(speed)
             time.sleep(0.04)
         elif distance < threshold:
