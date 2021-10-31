@@ -3,9 +3,10 @@ from picar_4wd.pin import Pin
 from picar_4wd.pwm import PWM
 from picar_4wd.ultrasonic import Ultrasonic
 from picar_4wd.servo import Servo
-import numpy as np
+# import numpy as np
 import time
 import sys
+import math
 
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
 servo = Servo(PWM("P0"), offset=0)
@@ -30,12 +31,17 @@ def generate_map():
         raw_data.append([angle, distance])
     print(raw_data)
     # Process array
-    # [0/1 , y, x]
+    # [0/1 , x, y]
     #  50*sqrt(2) approx 71
-    # points = []
-    # for d in distances:
-    #
-    #
+    points = []
+    for rd in raw_data:
+        x = math.floor(rd[1] * math.cos(math.radians(rd[0])))
+        y = math.floor(rd[1] * math.sin(math.radians(rd[0])))
+        if x > 50 or y > 50:
+            points.append([0, x, y])
+        else:
+            points.append([1, x, y])
+    print(points)
     # # Fill out numpy array
     # map = np.zeros((50,100))
     #
