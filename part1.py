@@ -9,6 +9,19 @@ speed = 25
 # create an Ultrasonic object
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
 
+def try_left_turn():
+    distance = ua.get_distance()
+    if distance < 10:
+        fc.backward(speed)
+        time.sleep(0.04)
+    if distance < 40:
+        fc.turn_right(speed)
+        time.sleep(0.04)
+        try_left_turn()
+    else:
+        fc.forward(speed)
+        fc.turn_left(speed)
+
 # keep driving straight, if an obstacle is "seen"
 # stop the vehicle, turn, and check for obstacle again
 # if no obstacle, keep driving
@@ -24,6 +37,7 @@ def main():
         if distance < 40:
             fc.turn_right(speed)
             time.sleep(0.04)
+            try_left_turn()
         else:
             fc.forward(speed)
 
