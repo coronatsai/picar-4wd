@@ -46,7 +46,7 @@ def generate_map():
     map = np.zeros((50,100))
     #
     np.set_printoptions(threshold=sys.maxsize)
-    print(arr)
+    print(map)
 
 if __name__ == '__main__':
     generate_map()
