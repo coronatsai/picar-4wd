@@ -3,26 +3,14 @@
 # Car Can "See" and "Navigate" around obstables
 import picar_4wd as fc
 from picar_4wd.pin import Pin
-from picar_4wd.pwm import PWM
 from picar_4wd.ultrasonic import Ultrasonic
-from picar_4wd.servo import Servo
 import time
 import random
-import math
 speed = 30
 threshold = 30
 # create an Ultrasonic object
 
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
-servo = Servo(PWM("P0"), offset=0)
-
-# from init.py
-def get_distance_at(angle):
-    global angle_distance
-    servo.set_angle(angle)
-    distance = ua.get_distance()
-    angle_distance = [angle, distance]
-    return distance
 
 # keep driving straight, if an obstacle is "seen"
 # stop the vehicle, turn, and check for obstacle again
@@ -30,7 +18,7 @@ def get_distance_at(angle):
 
 def main():
     while True:
-        distance = get_distance_at(0)
+        distance = ua.get_distance(0)
         print(distance)
 
         if distance < threshold:
@@ -38,7 +26,7 @@ def main():
             time.sleep(0.5)
             rand = random.randint(-90,90)
             if rand < 0:
-                fc.turn_left(math.abs(rand))
+                fc.turn_left(abs(rand))
             else:
                 fc.turn_right(rand)
         else:
