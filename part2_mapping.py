@@ -36,7 +36,7 @@ def generate_map():
     for rd in raw_data:
         x = math.floor(rd[1] * math.cos(math.radians(rd[0])))
         y = math.floor(rd[1] * math.sin(math.radians(rd[0])))
-        if x > 30 or y > 30:
+        if x >= 30 or y >= 30:
             points.append([0, x, y])
         else:
             points.append([1, x, y])
@@ -54,7 +54,7 @@ def generate_map():
 
         if val == 1:
             # Fill this point
-            map[y, x_center + x] = 1
+            map[y , x_center + x] = 1
             # Draw a line?
             # if prev_point_val == 1:
                 # connect the two points with 1s
