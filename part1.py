@@ -7,7 +7,7 @@ from picar_4wd.ultrasonic import Ultrasonic
 import time
 import random
 speed = 30
-threshold = 30
+threshold = 10
 # create an Ultrasonic object
 
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
