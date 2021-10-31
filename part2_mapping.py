@@ -46,7 +46,8 @@ def generate_map():
 
     x_center = 30
     prev_point_val = 0
-
+    prev_x = 0
+    prev_y = 0
     for point in points:
         val = point[0]
         x = point[1]
@@ -55,10 +56,14 @@ def generate_map():
         if val == 1:
             # Fill this point
             map[y , x_center + x] = 1
-            # Draw a line?
-            # if prev_point_val == 1:
-                # connect the two points with 1s
+            if prev_point_val == 1:
+                # draw a rectangle around the two points
+                for i in range(prev_x, x):
+                    for j in range(prev_y, y):
+                        map[j, x_center + i] = 1
         prev_point_val = val
+        prev_x = x
+        prev_y = y
 
     file = open("part2_map.txt", "w+")
     content = str(map)
