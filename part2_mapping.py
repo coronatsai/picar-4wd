@@ -32,20 +32,19 @@ def generate_map():
     print(raw_data)
     # Process array
     # [0/1 , x, y]
-    #  50*sqrt(2) approx 71
     points = []
     for rd in raw_data:
         x = math.floor(rd[1] * math.cos(math.radians(rd[0])))
         y = math.floor(rd[1] * math.sin(math.radians(rd[0])))
-        if x > 50 or y > 50:
+        if x > 30 or y > 30:
             points.append([0, x, y])
         else:
             points.append([1, x, y])
     print(points)
     # # Fill out numpy array
-    map = np.zeros((50,100))
+    map = np.zeros((30,60))
 
-    x_center = 50
+    x_center = 30
     prev_point_val = 0
 
     for point in points:
