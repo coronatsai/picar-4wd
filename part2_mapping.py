@@ -64,7 +64,7 @@ def generate_map():
         prev_point_val = val
         prev_x = x
         prev_y = y
-    np.set_printoptions(threshold=sys.maxsize)
+    np.asarray(map)
     print(map)
 
 if __name__ == '__main__':
