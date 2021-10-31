@@ -2,9 +2,10 @@
 
 # Car Can "See" and "Navigate" around obstables
 import picar_4wd as fc
-from picar_4wd.Ultrasonic import Ultrasonic
-
-speed = 20
+from picar_4wd.pin import Pin
+from picar_4wd.ultrasonic import Ultrasonic
+import time
+speed = 25
 # create an Ultrasonic object
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
 
@@ -15,14 +16,14 @@ ua = Ultrasonic(Pin('D8'), Pin('D9'))
 def main():
     while True:
         distance = ua.get_distance()
-
         print(distance)
 
         if distance < 10:
             fc.backward(speed)
+            time.sleep(0.04)
+        if distance < 40:
             fc.turn_right(speed)
-        elif distance < 30:
-            fc.turn_right(speed)
+            time.sleep(0.04)
         else:
             fc.forward(speed)
 
