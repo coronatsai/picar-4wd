@@ -23,8 +23,10 @@ def main():
             continue
         elif distance < 20:
             fc.backward(speed)
+            time.sleep(0.04)
         elif distance < threshold:
             fc.turn_right(speed)
+            time.sleep(0.04)
         else:
             fc.forward(speed)
 
