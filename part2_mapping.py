@@ -13,8 +13,8 @@ servo = Servo(PWM("P0"), offset=0)
 def get_distance_at(angle):
     global angle_distance
     servo.set_angle(angle)
-    time.sleep(0.04)
-    distance = us.get_distance()
+    time.sleep(1)
+    distance = ua.get_distance()
     angle_distance = [angle, distance]
     return distance
 
@@ -24,7 +24,7 @@ def generate_map():
     # store results as array of [angle, distance]
     raw_data = []
     for angle in angles:
-        distance = ua.get_distance_at(angle)
+        distance = get_distance_at(angle)
         if distance < 0:
             distance = 999
         raw_data.append([angle, distance])
