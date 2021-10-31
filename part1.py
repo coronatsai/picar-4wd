@@ -6,21 +6,33 @@ from picar_4wd.pin import Pin
 from picar_4wd.ultrasonic import Ultrasonic
 import time
 speed = 25
+too_close = 30
+threshold = 50
 # create an Ultrasonic object
 ua = Ultrasonic(Pin('D8'), Pin('D9'))
 
-def try_left_turn():
+def avoid_obstacle():
     distance = ua.get_distance()
-    if distance < 10:
+    # back away from obstacle if too close
+    while(distance < too_close):
+        time.sleep(0.04)
         fc.backward(speed)
-        time.sleep(0.04)
-    if distance < 40:
+        distance = ua.get_distance()
+
+    while(1):
+        # default is try to go right around the obstacle
         fc.turn_right(speed)
-        time.sleep(0.04)
-        try_left_turn()
-    else:
-        fc.forward(speed)
-        fc.turn_left(speed)
+        distance = ua.get_distance()
+        if distance >= threshold:
+            fc.forward(speed)
+            fc.turn_left(speed)
+            left_dist = ua.get_distance()
+            if left_dist > distance:
+                break
+            fc.turn_right(speed)
+        distance = ua.get_distance()
+        if distance >= threshold:
+            break
 
 # keep driving straight, if an obstacle is "seen"
 # stop the vehicle, turn, and check for obstacle again
@@ -31,13 +43,10 @@ def main():
         distance = ua.get_distance()
         print(distance)
 
-        if distance < 10:
-            fc.backward(speed)
-            time.sleep(0.04)
-        if distance < 40:
-            fc.turn_right(speed)
-            time.sleep(0.04)
-            try_left_turn()
+        if distance < 0:
+            continue
+        elif distance < threshold:
+            avoid_obstacle()
         else:
             fc.forward(speed)
 
