@@ -42,7 +42,7 @@ def generate_map():
             points.append([1, x, y])
     print(points)
     # # Fill out numpy array
-    map = np.zeros((,60))
+    map = np.zeros((30,60))
 
     x_center = 30
     prev_point_val = 0
